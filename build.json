@@ -1,0 +1,27 @@
+{
+  "plugins": [
+    [
+      "build-plugin-fusion",
+      {
+        "themePackage": "@alifd/theme-design-pro"
+      }
+    ],
+    [
+      "build-plugin-moment-locales",
+      {
+        "locales": [
+          "zh-cn"
+        ]
+      }
+    ]
+  ],
+  "proxy": {
+    "/api": {
+      "enable": true,
+      "target": "http://omp-fulfillment.test.i4px.com",
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
+}
