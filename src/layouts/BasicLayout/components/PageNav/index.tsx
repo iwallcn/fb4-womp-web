@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'ice';
 import store from '@/store';
 import { Nav } from '@alifd/next';
-
+import { CustomIcon } from '@/components/Iconfont';
+import { children } from '@/routerConfig';
 const SubNav = Nav.SubNav;
 const NavItem = Nav.Item;
-
 export interface IMenuItem {
   name: string;
   path: string;
@@ -61,14 +61,19 @@ function getSubMenuOrItem(item: IMenuItem, index: number) {
 }
 
 const Navigation = (props, context) => {
+  // 这里路由是前端控制
+  const furl: any = [];
+  for (let i in children) {
+    furl.push(children[i].path);
+  }
 
   const createMenu = (items) => {
-    let menu = [];
+    let menu: any[] = [];
     items.forEach(item => {
-      let obj = {
+      let obj: any = {
         name: item.name,
         path: `${item.url}`,
-        icon: item.style ? item.style : '',
+        icon: item.style ? item.style : <CustomIcon type="folderfill" size="s" />,
         children: []
       };
       menu.push(obj);
@@ -76,8 +81,7 @@ const Navigation = (props, context) => {
         obj.path = '/';
         item.children.forEach(child => {
           // furl前端控制的路由，其他后端控制
-          let furl = ['/forecast/listPage', '/appointment/listPage', '/appointment/planListPage', '/appointment/calendarPage', '/appointmentConfigure/listPage', '/appointment/cancelListPage', '/batchAndExpire/configPage']
-          let url = furl.indexOf(child.url) !== -1 ? child.url : `http://omp-fulfillment.test.i4px.com${child.url}`
+          let url = furl.indexOf(child.url) !== -1 ? child.url : `${window.location.origin}${child.url}`
           obj.children.push({
             name: child.name,
             path: url,

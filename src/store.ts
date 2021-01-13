@@ -1,8 +1,7 @@
 
 import { createStore } from 'ice';
-import user from './models/user';
 import basic from './models/basic';
 
-const store = createStore({ basic, user });
+const store = createStore({ basic });
 // 状态管理
 export default store;

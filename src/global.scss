@@ -14,10 +14,10 @@ a:link {
   background-color: #F7FAFF;
 }
 .next-shell-brand .next-shell-header{
-  background: linear-gradient(90deg, #228FFF 0%, #0D57DC 100%);
+  background: #3c8dbc;
 }
 .next-shell-brand .next-shell-header .nav-trigger{
-  background: #228FFF;
+  background: #3c8dbc;
 }
 .next-shell-aside.next-shell-navigation{
   overflow-x: inherit;
@@ -29,10 +29,10 @@ a:link {
 .next-btn.next-btn-secondary:link,
 .next-btn.next-btn-secondary:visited,
 .next-btn.next-btn-secondary.visited{
-  color: #065CF3 !important;
+  color: #337ab7 !important;
 }
 .next-btn.next-btn-secondary {
-  border-color: #065CF3 !important;
+  border-color: #337ab7 !important;
 }
 .next-btn.next-btn-secondary:focus,
 .next-btn.next-btn-secondary:hover,
@@ -40,14 +40,14 @@ a:link {
 .next-btn.next-btn-secondary:active,
 .next-btn.next-btn-secondary.active {
   color: #FFFFFF !important;
-  background-color: #065CF3 !important;
-  border-color: #065CF3 !important;
+  background-color: #337ab7 !important;
+  border-color: #337ab7 !important;
 }
 .next-input.next-focus{
-  border-color: #065CF3;
+  border-color: #337ab7;
 }
 .next-menu-item.next-selected .next-menu-icon-selected {
-  color: #065CF3;
+  color: #337ab7;
 }
 .next-menu-item:not(.next-disabled):hover .next-menu-icon-selected,
 .next-menu-item:not(.next-disabled).next-selected:hover .next-menu-icon-selected,
@@ -56,11 +56,11 @@ a:link {
 .next-menu-item:not(.next-disabled).next-focused .next-menu-icon-selected,
 .next-menu-item:not(.next-disabled).next-selected.next-focused .next-menu-icon-selected,
 .next-menu-item:not(.next-disabled).next-selected:focus .next-menu-icon-selected {
-  color: #065CF3;
+  color: #337ab7;
 }
 .next-radio-wrapper.checked .next-radio-inner {
-  border-color: #065CF3;
-  background: #065CF3;
+  border-color: #337ab7;
+  background: #337ab7;
 }
 .next-btn.next-btn-primary:focus,
 .next-btn.next-btn-primary:hover,
@@ -70,7 +70,7 @@ a:link {
   background-color: #0D57DC;
 }
 .next-btn.next-btn-primary {
-  background-color: #065CF3;
+  background-color: #337ab7;
   &.submit{
     padding: 0 45px;
     height: 38px;
@@ -85,24 +85,24 @@ a:link {
   border-left-width: 0;
 }
 .next-menu-item{
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #fff;
-  border-radius: 3px;
+  // border-top: 1px solid #fff;
+  // border-bottom: 1px solid #fff;
+  // border-left: 2px solid #fff;
+  // border-right: 2px solid #fff;
+  // border-radius: 3px;
 }
 .next-select-auto-complete-menu .next-menu-item{
   &.next-focused,
   &:hover{
     background-color: #E0EAFC !important;
-    color: #065CF3 !important;
+    color: #337ab7 !important;
   }
 }
 .next-calendar-card .next-calendar-cell.next-inrange .next-calendar-date,
 .next-calendar-panel .next-calendar-cell.next-inrange .next-calendar-date,
 .next-calendar-range .next-calendar-cell.next-inrange .next-calendar-date {
   background: #E0EAFC !important;
-  color: #065CF3 !important;
+  color: #337ab7 !important;
   border-color: #E0EAFC !important;
 }
 .next-calendar-card .next-calendar-cell-current .next-calendar-date,
@@ -114,7 +114,7 @@ a:link {
 .next-calendar-range .next-calendar-cell-current .next-calendar-date,
 .next-calendar-range .next-calendar-cell-current .next-calendar-month,
 .next-calendar-range .next-calendar-cell-current .next-calendar-year {
-  color: #065CF3 !important;
+  color: #337ab7 !important;
 }
 .next-calendar-card .next-calendar-cell.next-selected .next-calendar-date,
 .next-calendar-card .next-calendar-cell.next-selected .next-calendar-month,
@@ -125,9 +125,9 @@ a:link {
 .next-calendar-range .next-calendar-cell.next-selected .next-calendar-date,
 .next-calendar-range .next-calendar-cell.next-selected .next-calendar-month,
 .next-calendar-range .next-calendar-cell.next-selected .next-calendar-year {
-  background: #065CF3 !important;
+  background: #337ab7 !important;
   color: #fff !important;
-  border-color: #065CF3 !important;
+  border-color: #337ab7 !important;
 }
 .next-calendar-panel-header-left .next-calendar-btn:focus,
 .next-calendar-panel-header-left .next-calendar-btn:hover,
@@ -180,7 +180,7 @@ a:link {
 }
 .next-calendar-fullscreen .next-calendar-date:hover, .next-calendar-fullscreen .next-calendar-month:hover {
   background: #E0EAFC !important;
-  color: #065CF3 !important;
+  color: #337ab7 !important;
   border-color: #E0EAFC !important;
 }
 .next-calendar-card .next-calendar-date:hover, .next-calendar-card .next-calendar-month:hover, .next-calendar-card .next-calendar-year:hover,
@@ -191,45 +191,45 @@ a:link {
 .next-calendar-range .next-calendar-month:hover,
 .next-calendar-range .next-calendar-year:hover {
   background: #E0EAFC !important;
-  color: #065CF3 !important;
+  color: #337ab7 !important;
   border-color: #E0EAFC !important;
 }
 .next-tabs-pure > .next-tabs-bar .next-tabs-nav-container .next-tabs-tab.active {
-  color: #065CF3;
+  color: #337ab7;
 }
 .next-tabs-pure > .next-tabs-bar .next-tabs-nav-container .next-tabs-tab:before {
-  border-bottom: 2px solid #065CF3;
+  border-bottom: 2px solid #337ab7;
 }
 .next-pagination .next-pagination-item.next-current {
-  border-color: #065CF3;
-  background: #065CF3;
+  border-color: #337ab7;
+  background: #337ab7;
 }
 .next-pagination .next-pagination-item.next-current:hover, .next-pagination .next-pagination-item.next-current:focus {
-  border-color: #065CF3;
-  color: #065CF3;
+  border-color: #337ab7;
+  color: #337ab7;
 }
 .next-pagination-size-selector-btn.next-btn-text.next-current {
-  color: #065CF3;
+  color: #337ab7;
 }
 .next-btn-text.next-btn-normal:focus, .next-btn-text.next-btn-normal:hover, .next-btn-text.next-btn-normal.hover, .next-btn-text.next-btn-normal:active, .next-btn-text.next-btn-normal.active {
-  color: #065CF3;
+  color: #337ab7;
 }
 .next-checkbox-wrapper.indeterminate > .next-checkbox > .next-checkbox-inner, .next-checkbox-wrapper.indeterminate.focused > .next-checkbox > .next-checkbox-inner {
-  background-color: #065CF3;
+  background-color: #337ab7;
 }
 .next-checkbox-wrapper.checked > .next-checkbox > .next-checkbox-inner, .next-checkbox-wrapper.checked.focused > .next-checkbox > .next-checkbox-inner {
-  background-color: #065CF3;
+  background-color: #337ab7;
 }
 .next-checkbox-wrapper:not(.disabled):hover > .next-checkbox > .next-checkbox-inner, .next-checkbox-wrapper.hovered > .next-checkbox > .next-checkbox-inner, .next-checkbox-wrapper.focused > .next-checkbox > .next-checkbox-inner {
-  border-color: #065CF3;
+  border-color: #337ab7;
   background-color: #E0EAFC;
 }
 .next-checkbox-wrapper.indeterminate:not(.disabled):hover > .next-checkbox .next-checkbox-inner, .next-checkbox-wrapper.indeterminate:not(.disabled).hovered > .next-checkbox .next-checkbox-inner, .next-checkbox-wrapper.checked:not(.disabled):hover > .next-checkbox .next-checkbox-inner, .next-checkbox-wrapper.checked:not(.disabled).hovered > .next-checkbox .next-checkbox-inner {
-  background-color: #065CF3;
+  background-color: #337ab7;
 }
 .next-table-cell-wrapper .next-btn-text{
   background-color: transparent !important;
-  color: #065CF3 !important;
+  color: #337ab7 !important;
 }
 .next-table{
   overflow: auto;
@@ -253,4 +253,136 @@ a:link {
 }
 .next-shell-sub-main{
   overflow-x: hidden;
+  min-height: 100%;
+  height: auto;
 }
+.next-shell-brand .next-shell-aside.next-shell-navigation {
+  background-color: #222d32;
+  border-right:none;
+}
+.next-nav.next-normal .next-nav-item.next-menu-item {
+  color: #989898;
+  border-left: 3px solid transparent;
+}
+.next-nav.next-normal .next-nav-item.next-menu-item.next-focused, 
+.next-nav.next-normal .next-nav-item.next-menu-item:hover,
+.next-nav.next-normal .next-nav-item.next-menu-item.next-opened{
+  color: #ffffff;
+  background: #2c3b41;
+  border-left-color: #3c8dbc;
+}
+.next-nav.next-ver .next-menu-item-inner a {
+  color: #989898;
+}
+.next-nav.next-ver .next-menu-item-inner{
+  height: 44px;
+  display: flex;
+    align-items: center;
+}
+.next-menu .next-menu-icon-arrow.next-icon{
+  top: -4px!important;
+}
+.next-menu-item-text > i {
+  padding-right: 6px;
+}
+// .next-shell-brand .next-shell-header {
+//   color: #FFFFFF;
+//   height: 52px;
+//   background: #18263C;
+//   /* border-bottom: 1px solid #EEEEEE; */
+//   /* -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12); */
+//   /* box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12); */
+//   padding: 0 16px;
+// }
+.next-shell-brand .next-shell-header {
+  border-bottom: none;
+  box-shadow: none;
+}
+.next-nav.next-ver .next-menu-item {
+  height: 44px;
+}
+.next-btn.next-btn-primary:hover{
+  background-color: #286090;
+  border-color: #204d74;
+}
+.next-shell-brand .next-shell-main .next-shell-footer{
+  background-color: #fff;
+}
+.next-table-empty {
+  padding: 32px;
+}
+.next-nav.next-normal .next-nav-item.next-menu-item.next-child-selected {
+  background: #2c3b41;
+  border-left-color: #3c8dbc;
+  color: #fff;
+}
+.next-nav.next-normal .next-menu-sub-menu .next-menu-item.next-selected,
+.next-nav.next-normal .next-nav-item.next-menu-item:before {
+  background-color: #000;
+}
+/***************** 以下是业务模块通用css start **********************/
+.Search{
+  background-color: #fff;
+  box-shadow: 0 18px 46px rgba(22, 45, 61, 0.06);
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.Title_h5{
+  position: relative;
+  padding-left: 8px;
+  margin: 16px 0 4px 0;
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 16px;
+    width: 3px;
+    background: #209BFA;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 16px / 2);
+  }
+}
+.List {
+  background-color: #fff;
+  box-shadow: 0 18px 46px rgba(22, 45, 61, 0.06);
+  padding: 16px;
+  .add {
+    padding-bottom: 15px;
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  .Table {
+    .opt {
+      button {
+        margin-right: 5px;
+      }
+      a {
+        color: #228FFF;
+      }
+    }
+  }
+
+  .total {
+    color: #4a5b6d;
+    font-size: 12px;
+    span {
+      padding: 0 3px;
+      color: #5584ff;
+    }
+  }
+}
+.dataEmpty{
+  padding: 32px;
+  text-align: center;
+}
+.goBack {
+  cursor: pointer;
+}
+.ahref {
+  color: #228FFF;
+  cursor: pointer;
+}
+/***************** 以下是业务模块通用css end **********************/

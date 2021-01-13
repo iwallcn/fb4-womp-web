@@ -8,6 +8,19 @@
   padding: $shell-dark-content-paddingTop $shell-dark-content-paddingLeft;
   background-color: $color-white;
 }
+.PageHeader {
+  flex-flow: nowrap!important;
+  flex-flow: nowrap !important;
+  align-items: center;
+  padding: 20px 24px;
+  i{
+    margin: 0 4px 0 0!important;
+    color: #ccc;
+    :hover{
+      color: #337ab7;
+    }
+  }
+}
 
 .Title {
   display: block;

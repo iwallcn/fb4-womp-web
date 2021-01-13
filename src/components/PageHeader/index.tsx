@@ -1,6 +1,8 @@
 import React, { SFC } from 'react';
 import { Breadcrumb, Box, Typography } from '@alifd/next';
 import styles from './index.module.scss';
+import { CustomIcon } from '../Iconfont';
+import { useHistory } from 'ice';
 
 export interface PageHeaderProps {
   breadcrumbs?: Array<{ name: string; path?: string }>;
@@ -9,19 +11,22 @@ export interface PageHeaderProps {
 }
 
 const PageHeader: SFC<PageHeaderProps> = (props) => {
-  console.log(props.breadcrumbs)
+  const history = useHistory();
   const { breadcrumbs, title, description, ...others } = props;
   return (
     <Box spacing={8} className={styles.PageHeader} {...others}>
+      {/* <CustomIcon type="back" className="goBack" onClick={() => window.history.back()} /> */}
       {
         breadcrumbs && breadcrumbs.length > 0 ? (
-          <Breadcrumb className={styles.Breadcrumbs} separator=" / ">
-            {
-              breadcrumbs.map((item, index) => (
-                <Breadcrumb.Item link={item.path} key={index}>{item.name}</Breadcrumb.Item>
-              ))
-            }
-          </Breadcrumb>
+          <>
+            <Breadcrumb className={styles.Breadcrumbs} separator=" / ">
+              {
+                breadcrumbs.map((item, index) => (
+                  <Breadcrumb.Item link={item.path} key={index}>{item.name}</Breadcrumb.Item>
+                ))
+              }
+            </Breadcrumb>
+          </>
         ) : null
       }
 

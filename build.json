@@ -16,12 +16,20 @@
     ]
   ],
   "proxy": {
-    "/api": {
+    "/mainApi": {
       "enable": true,
       "target": "http://omp-fulfillment.test.i4px.com",
       "pathRewrite": {
-        "^/api": ""
+        "^/mainApi": ""
       }
+    }
+  },
+  "modeConfig": {
+    "branch": {
+      "outputDir": "E:/FB4/fpx-fb4-womp/fpx-fb4-womp-web/src/main/resources/static/build/"
+    },
+    "trunk": {
+      "outputDir": "E:/FB4_trunk/fpx-fb4-womp-web/src/main/resources/static/build/"
     }
   }
 }

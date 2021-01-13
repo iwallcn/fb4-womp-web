@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { injectIntl } from 'react-intl';
-import { useHistory, Link } from 'ice';
-import { Table, Divider, Form, Loading, Button, TreeSelect, Message, Dialog } from '@alifd/next';
+import { useHistory } from 'ice';
+import { Table, Field, Divider, Form, Loading, Button, TreeSelect, Message, Dialog, NumberPicker, Input } from '@alifd/next';
 import styles from './index.module.scss';
 import PageHeader from '@/components/PageHeader';
 import { renderTime, convertDictByCode, getWareName } from '@/utils/index';
@@ -10,24 +10,21 @@ import API from './api';
 const FormItem = Form.Item;
 
 export default injectIntl(({ intl }) => {
+  const searchField = Field.useField({ values: {} });
   const lang = window.GLOBAL_LANG;
   const whAll = window.GLOBAL_WHALL;
   const history = useHistory();
-
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [warehouse, setWarehouse] = useState('');
-
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
     setLoading(true);
     getList()
   }, [warehouse]);
 
-  /**
-   * 表单查询各种兼容处理
-   */
   const getList = () => {
-    API.getList(warehouse || '', '').then(res => {
+    API.getList(warehouse || '').then(res => {
       setLoading(false);
       if (res.success && res.data) {
         if (!res.data.length) {
@@ -38,7 +35,7 @@ export default injectIntl(({ intl }) => {
           let day = val.advanceDayFpx || val.advanceDayCustomer;
           let d = day > 0 ? day : '';
           val.createTime = renderTime(val.createTime);
-          val.carrier = val.carrierType ? `${convertDictByCode('CARRIER_TYPE', val.carrierType)}: ${d} ${lang['fb4.day']}` : '';
+          val.carrier = `${convertDictByCode('CARRIER_TYPE', val.carrierType)}: ${d} ${lang['fb4.day']}`;
         })
         setTableData(res.data);
       } else {
@@ -51,17 +48,12 @@ export default injectIntl(({ intl }) => {
     setWarehouse(v);
   }
   // 启用禁用
-  const handleModify = (record) => {
-    let e = record.enabled === 'Y' ? 'N' : 'Y';
-    let obj = {
-      configNo: record.configNo,
-      enabled: e
-    }
+  const handleDelete = (record) => {
     Dialog.confirm({
       title: lang['fb4.reminder'],
       content: lang['are.you.sure.about.this.action'],
       onOk: () => {
-        API.updateEnabled(obj).then(res => {
+        API.delShipConfig(record.shipConfigNo).then(res => {
           if (res.success) {
             Message.success(res.msg)
             getList();
@@ -89,24 +81,57 @@ export default injectIntl(({ intl }) => {
             onChange={changeWh}
             style={{ width: '100%' }} />
         </FormItem>
-
-        {/* <Cell colSpan={3} className={styles.btns}>
-          <Box
-            spacing={8}
-            direction="row"
-            align="flex-end"
-            justify="center"
-            style={{ height: '100%' }}
-          ><Form.Submit type="primary" onClick={search}>{lang['fb4.search']}</Form.Submit></Box></Cell> */}
       </Form>
     </div>
   );
+  const triggerUpdate = (r) => {
+    setVisible(true);
+    searchField.setValues({
+      shipDate: r.shipDate,
+      shipConfigNo: r.shipConfigNo
+    })
+  }
+  const handleUpdate = () => {
+    searchField.validate((errors, values: any) => {
+      if (errors) {
+        return;
+      }
+      let r = {
+        shipConfigNo: values.shipConfigNo,
+        shipDate: values.shipDate,
+      }
+      API.update(r).then(res => {
+        if (res.success) {
+          setVisible(false);
+          Message.success(res.msg);
+          getList();
+        } else {
+          Message.error(res.errors ? res.errors[0].errorMsg : res.msg);
+        }
+      })
+    })
+  };
+  const Dialog_update = (
+    <Dialog
+      title={lang['edit.schedule.settings']}
+      visible={visible}
+      onOk={handleUpdate}
+      onCancel={() => setVisible(false)}
+      onClose={() => setVisible(false)} >
+      <Form field={searchField} labelAlign="left">
+        <FormItem required label={lang['sailing.schedule.days']}>
+          <Input htmlType="hidden" name="shipConfigNo" />
+          <NumberPicker step={1} min={0} name="shipDate" style={{ width: '100%' }} />
+        </FormItem>
+      </Form>
+    </Dialog >
+  )
 
   const List = (
     <div className="List">
       <Loading visible={loading} style={{ display: 'block' }}>
         <div className="add">
-          <Button type="primary" onClick={() => history.push('/appointmentConfigure/addPage')}>
+          <Button type="primary" onClick={() => history.push('/appointmentConfigure/addShipPage')}>
             {lang['fb4.new']}
           </Button>
         </div>
@@ -120,31 +145,22 @@ export default injectIntl(({ intl }) => {
               <Table.Column title={lang['fb4.warehouse']} dataIndex="warehouseCode" cell={(v, i, r) => {
                 return getWareName(whAll, v)
               }} />
-              <Table.Column title="履行时间(单位min)" cell={(v, i, r) => (
-                <span>{r.performAdvanceTime}&lt;={lang['point.in.time']}&lt;={r.performDelayTime}</span>
-              )} />
-              <Table.Column title={lang['fb4.but.goods.quantity']} dataIndex="receivableQty" />
-              <Table.Column title={lang['fpx.receivable.quantity']} dataIndex="fpxReceivableQty" />
-              <Table.Column title={lang['valueadded.receivable.qty']} dataIndex="valueAddedReceivableQty" />
-              <Table.Column title={lang['warehouse.volume']} dataIndex="totalUnit" />
+              <Table.Column title={lang['sailing.schedule.days']} dataIndex="shipDate" />
               <Table.Column title={lang['fb4.create.user']} dataIndex="createUser" />
               <Table.Column title={lang['fb4.create.time']} dataIndex="createTime" cell={(v, i, r) => {
                 return v || '-'
-              }} />
-              <Table.Column title={lang['fb4.status']} dataIndex="enabled" cell={(v, i, r) => {
-                return v == 'Y' ? lang['fb4.enabled'] : lang['fb4.html.disable'];
               }} />
               <Table.Column
                 title={lang['fb4.operation']}
                 cell={(value, index, record) => (
                   <div className={styles.opt}>
-                    <a onClick={() => handleModify(record)} className="ahref">
-                      {record.enabled === 'Y' ? lang['fb4.html.disable'] : lang['fb4.enabled']}
+                    <a onClick={() => handleDelete(record)} className="ahref">
+                      {lang['fb4.delete']}
                     </a>
                     <Divider direction="ver" />
-                    <Link to={{ pathname: '/appointmentConfigure/addPage', state: record }}>{lang['fb4.modify']}</Link>
-                    <Divider direction="ver" />
-                    <Link to={{ pathname: '/appointmentConfigure/detailPage', state: record }}>{lang['fb4.view']}</Link>
+                    <a onClick={() => triggerUpdate(record)} className="ahref">
+                      {lang['fb4.update']}
+                    </a>
                   </div>
                 )}
               />
@@ -161,9 +177,10 @@ export default injectIntl(({ intl }) => {
   return (
     <>
       <PageHeader
-        breadcrumbs={[{ name: lang['fb4.inbound.appointment.set'] }, { name: lang['fb4.appointment.set.manage'] }]}
+        breadcrumbs={[{ name: lang['fb4.inbound.appointment.set'] }, { name: lang['fb4.reservation.ship.manage'] }]}
       />
       {Search}
+      {Dialog_update}
       {List}
     </>
   );

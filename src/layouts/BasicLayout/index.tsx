@@ -58,7 +58,6 @@ export default function BasicLayout({
   });
 
   const [basic, basicDispatchers] = store.useModel('basic');
-
   useEffect(() => {
     basicDispatchers.getAjaxData();
   }, []);
@@ -99,7 +98,9 @@ export default function BasicLayout({
           />
         </Shell.Navigation>
 
-        <Shell.Content>{children}</Shell.Content>
+        <Shell.Content>
+          {children}
+        </Shell.Content>
         <Shell.Footer>
           <Footer
             foot={basic.ajaxData.foot}

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { runApp } from 'ice';
 import LocaleProvider from '@/components/LocaleProvider';
-import { Form, Message } from '@alifd/next';
+import { Message } from '@alifd/next';
+import { getLocale } from '@/locales/locale';
+import api from '@/utils/api';
 
-import { getLocale } from '@/utils/locale';
 
 // 设置国际化
 const locale = getLocale();
@@ -11,7 +12,7 @@ const locale = getLocale();
 // 应用进行全局配置，设置路由、运行环境、请求、日志等
 const appConfig = {
   request: {
-    baseURL: '/api',
+    baseURL: process.env.NODE_ENV === 'development' ? '/mainApi' : '',
     // 可选的，全局设置 request 是否返回 response 对象，默认为 false
     withFullResponse: false,
     withCredentials: true,
@@ -40,7 +41,7 @@ const appConfig = {
           return response;
         },
         onError: (err) => {
-          if (err && err.response.status) {
+          if (err && err.response && err.response.status) {
             switch (err.response.status) {
               case 400:
                 err.message = '错误请求'
@@ -101,5 +102,16 @@ const appConfig = {
     type: 'browser'
   }
 };
-// 用于创建渲染整个应用
-runApp(appConfig);
+
+/**
+ * 处理全局数据：语言包，字典，仓库
+ */
+Promise.all([
+  api.getLang(),
+  api.getDictionary(),
+  api.getWHAll()
+]).then(res => {
+  api.setGlobal(res);
+  runApp(appConfig); // 用于创建渲染整个应用
+});
+// runApp(appConfig);

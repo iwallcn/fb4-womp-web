@@ -1,17 +1,27 @@
 import React from 'react';
-import { Avatar, Overlay, Menu, Icon } from '@alifd/next';
+import { Overlay, Menu, Icon } from '@alifd/next';
 import { injectIntl } from 'react-intl';
 import styles from './index.module.scss';
+import { CustomIcon } from "@/components/Iconfont";
 
 const { Item } = Menu;
 const { Popup } = Overlay;
 
 const HeaderAvatar = injectIntl(({ user, intl }) => {
+  let _url = ''
+  if (window.origin.indexOf('test') > 0 || window.origin.indexOf('localhost') > 0) {
+    _url = 'http://usc.test.i4px.com/user/changemypwd';
+  } else if (window.origin.indexOf('uat') > 0) {
+    _url = 'http://ucs.uat.i4px.com/user/changemypwd';
+  } else {
+    _url = 'http://ucs.i4px.com/user/changemypwd';
+  }
   return (
     <Popup
       trigger={
         <div className={styles.headerAvatar}>
-          <Avatar size="small" src={user.avatar} alt={intl.formatMessage({ id: 'fb4.header.userAvatar' })} />
+          {/* <Avatar size="small" src={user.avatar} alt={intl.formatMessage({ id: 'fb4.header.userAvatar' })} /> */}
+          <CustomIcon type="usercopy"></CustomIcon>
           <span style={{ marginLeft: 10 }}>{user.fullName}</span>
         </div>
       }
@@ -34,11 +44,19 @@ const HeaderAvatar = injectIntl(({ user, intl }) => {
           </div>
         </div>
         <Menu className={styles.menu}>
-          <Item><Icon size="small" type="set" />{intl.formatMessage({ id: 'fb4.header.editPwd' })}</Item>
-          <Item><Icon size="small" type="exit" />{intl.formatMessage({ id: 'fb4.header.quit' })}</Item>
+          <Item>
+            <a href={_url}>
+              <CustomIcon type="editpwd" size="small" />{intl.formatMessage({ id: 'fb4.header.editPwd' })}
+            </a>
+          </Item>
+          <Item>
+            <a href={`${window.origin}/logout`}>
+              <CustomIcon type="logout" size="small" />{intl.formatMessage({ id: 'fb4.header.quit' })}
+            </a>
+          </Item>
         </Menu>
       </div>
-    </Popup>
+    </Popup >
   );
 });
 

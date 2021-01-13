@@ -5,17 +5,23 @@ import { ConfigProvider } from '@alifd/next';
 // 引入 react-intl 多语言包
 import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
+import ja from 'react-intl/locale-data/ja';
+import de from 'react-intl/locale-data/ga';
 
 // 引入基础组件的语言包
 import enUS from '@alifd/next/lib/locale/en-us';
 import zhCN from '@alifd/next/lib/locale/zh-cn';
+import jaJP from '@alifd/next/lib/locale/ja-jp';
+import deCH from '@alifd/next/lib/locale/en-us';
 
 // 引入 locale 配置文件
-import localeEnUS from '@/locales/en-US';
-import localeZhCN from '@/locales/zh-CN';
+import localeEnUS from '@/locales/en';
+import localeZhCN from '@/locales/zh';
+import localeJaJP from '@/locales/ja';
+import localeDeCH from '@/locales/de';
 
 // 设置语言包
-addLocaleData([...en, ...zh]);
+addLocaleData([...en, ...zh, ...ja, ...de]);
 
 const localeInfo = {
   'zh-CN': {
@@ -28,6 +34,16 @@ const localeInfo = {
     appLocale: 'en',
     appMessages: localeEnUS,
   },
+  'ja-JP': {
+    nextLocale: jaJP,
+    appLocale: 'ja',
+    appMessages: localeJaJP,
+  },
+  'de-CH': {
+    nextLocale: deCH,
+    appLocale: 'de',
+    appMessages: localeDeCH,
+  }
 };
 
 interface Props {
